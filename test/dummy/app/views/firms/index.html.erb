@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Firms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% firms.each do |firm| %>
+      <tr>
+        <td>
+          <%=link_to firm.name, firm   %>
+          <button name="watch">Watch</button>
+        </td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
