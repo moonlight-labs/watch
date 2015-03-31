@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20150330202106) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "watch_watches", ["watcher_id", "watcher_type", "watchable_id", "watchable_type"], name: "my_index", unique: true, using: :btree
+  add_index "watch_watches", ["watchable_type", "watchable_id"], name: "index_watch_watches_on_watchable_type_and_watchable_id", using: :btree
+  add_index "watch_watches", ["watcher_id", "watcher_type", "watchable_id", "watchable_type"], name: "uniq_watches", unique: true, using: :btree
+  add_index "watch_watches", ["watcher_type", "watcher_id"], name: "index_watch_watches_on_watcher_type_and_watcher_id", using: :btree
 
 end

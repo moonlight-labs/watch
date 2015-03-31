@@ -1,8 +1,8 @@
 class CreateWatchWatches < ActiveRecord::Migration
   def change
     create_table :watch_watches do |t|
-      t.references :watcher,   polymorphic: true   #, index: true
-      t.references :watchable, polymorphic: true   #, index: true 
+      t.references :watcher,   polymorphic: true, index: true
+      t.references :watchable, polymorphic: true, index: true 
 
       t.timestamps null: false
     end
