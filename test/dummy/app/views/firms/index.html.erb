@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <h1>Listing Firms</h1>
 
 <table>
@@ -15,7 +16,9 @@
       <tr>
         <td>
           <%=link_to firm.name, firm   %>
-          <button name="watch">Watch</button>
+
+          <%= render 'watch', target: firm %>
+          
         </td> 
       </tr>
     <% end %>
