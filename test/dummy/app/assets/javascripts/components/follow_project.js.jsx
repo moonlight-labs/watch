@@ -16,11 +16,19 @@ var FollowProject = React.createClass(
     },
 
     is_following: function() {
-      //return true;
-      
-      return Math.floor((Math.random() * 100) + 1) % 2 === 0;
 
-      // $.get("/projects/" + this.props.following_id + "/following", function(data) { return(/true/.test(data)) });
+      var t = this;
+
+      $.ajax({
+        url:      '/me.json',
+        dataType: 'json',
+        success: function(data) {
+          console.log(data);
+          var bloom = new JsonBloomfilter(data.watch_bloom);
+          var result = bloom.test([t.props.target_type, t.props.target_id]);
+          t.setState({following: result});
+        }
+      });
     },
 
     follow: function() { 

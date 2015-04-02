@@ -4,5 +4,7 @@
   <h2><%= firm.name %></h2>
   <%= firm.id %>
   <%= firm.class %>
+  <br />
+  <%= current_user.watches?(firm) ? 'WATCHED' : 'NOT WATCHED' %>
   <%= render 'watch', target: firm %>
 </p>

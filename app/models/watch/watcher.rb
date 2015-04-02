@@ -20,5 +20,11 @@ module Watch::Watcher
       self.watches.where(watchable: obj).present?
     end
 
+    def watch_bloom
+      filter = JsonBloomfilter.build 10000, 0.01
+      filter.add watches.pluck(:watchable_type,:watchable_id) 
+      return filter  
+    end
+
   end
 end

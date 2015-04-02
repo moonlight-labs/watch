@@ -5,14 +5,17 @@ var FollowMixin = {
 
   getDefaultProps: function() {
     return({ 
-      following: true,
+      following: false,
       already_following_message: "Unwatch",
       not_following_message: "Watch"
     });
   },
 
   componentDidMount: function() {
-    this.setState({following: this.is_following()});
+    // start is_following
+    this.is_following();
+    // debugger;
+    // this.setState({following: f});
   },
 
   handleClick: function() {
