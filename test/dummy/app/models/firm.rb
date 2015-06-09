@@ -1,4 +1,3 @@
 class Firm < ActiveRecord::Base
-  augment Watch::Watchable
-  
+  include Watch::Watchable
 end

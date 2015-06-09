@@ -3,7 +3,25 @@ module Watch
     belongs_to :watcher,   polymorphic: true
     belongs_to :watchable, polymorphic: true
 
-    scope :by_type, -> { group(:watchable_type) }
+    def self.watch!(watcher, watchable)
+      raise 'A valid watcher is required' if watcher.nil?
+      raise 'A valid watchable is required' if watchable.nil?
+
+      self.find_or_create_by!(watcher: watcher, watchable: watchable)
+    end
+
+    def self.unwatch!(watcher, watchable)
+      raise 'A valid watcher is required' if watcher.nil?
+      raise 'A valid watchable is required' if watchable.nil?
+
+      self.find_by!(watcher: watcher, watchable: watchable).destroy
+    end
+
+    def self.bloom(watcher)
+      filter = new JsonBloomFilter(size: watcher.watches.count)
+      filter.add(watcher.watches.pluck(:watchable_type,:watchable_id))
+      return filter
+    end
 
   end
 end
