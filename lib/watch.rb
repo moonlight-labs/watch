@@ -1,19 +1,14 @@
 require "watch/engine"
-
-# Augmentations
-class ::Object
-  def self.augment(*mods)
-    include *mods
-    mods.each {|mod| class_eval &mod.augmentation }
-  end
-end
-
-class ::Module
-  def augmentation(&block)
-    @augmentation ||= block
-  end
-end
-
+require "watch/configuration"
 
 module Watch
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+  
+  def self.configure
+    yield(self.configuration)
+  end
+  
 end

@@ -1,13 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-
-<h1>Listing Firms</h1>
+<h1>Firms</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Index</th>
-      <th colspan="3"></th>
+      <th>Name</th>
+      <th>Watch</th>
     </tr>
   </thead>
 
@@ -15,11 +14,11 @@
     <% firms.each do |firm| %>
       <tr>
         <td>
-          <%=link_to firm.name, firm   %>
-
-          <%= render 'watch', target: firm %>
-          
-        </td> 
+          <%= link_to firm.name, firm_path(firm) %>          
+        </td>
+        <td>
+          <%= react_watch_widget(firm) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

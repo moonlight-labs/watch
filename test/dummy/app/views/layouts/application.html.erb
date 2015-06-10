@@ -3,14 +3,10 @@
 <head>
   <title>Dummy</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div>
-    <%= "#{current_user.name} is watching #{current_user.watches.count} items" %>
-  </div>
 
 <%= yield %>
 
