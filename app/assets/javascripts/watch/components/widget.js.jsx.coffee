@@ -8,22 +8,31 @@ class Components.Watch.Widget extends React.Component
 
   constructor: (props) ->
     super(props)
-    @state = Watch.Fetcher.shared()
+    promise = Watch.Fetcher.shared().promise(@props.id, @props.type)
+    @state = promise.properties || {}
 
-  watched: ->
-    this.state.watched(@props.id, @props.type)
+  componentWillMount: ->
+    promise = Watch.Fetcher.shared().promise(@props.id, @props.type)
+    promise.on('change', @refresh, @)
+
+  componentWillUnmount: ->
+    promise = Watch.Fetcher.shared().promise(@props.id, @props.type)
+    promise.off('change', @refresh, @)
+
+  refresh: (promise) ->
+    @setState(promise.properties || {})
 
   watch: ->
-    this.state.watch(@props.id, @props.type)
+    Watch.Fetcher.shared().watch(@props.id, @props.type)
 
   unwatch: ->
-    this.state.unwatch(@props.id, @props.type)
+    Watch.Fetcher.shared().unwatch(@props.id, @props.type)
 
   text: ->
-    if @watched() then (@props.unwatch or "Unwatch") else (@props.watch or "Watch")
+    if @state.watched then "Unwatch" else "Watch"
 
   render: ->
     return React.DOM.button { onClick: @clicked }, @text()
 
   clicked: =>
-    if @watched() then @unwatch() else @watch()
+    if @state.watched then @unwatch() else @watch()

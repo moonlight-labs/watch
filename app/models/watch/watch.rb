@@ -1,7 +1,7 @@
 module Watch
   class Watch < ActiveRecord::Base
-    belongs_to :watcher,   polymorphic: true
-    belongs_to :watchable, polymorphic: true
+    belongs_to :watcher, polymorphic: true, touch: true
+    belongs_to :watchable, polymorphic: true, touch: true
 
     def self.watch!(watcher, watchable)
       raise 'A valid watcher is required' if watcher.nil?

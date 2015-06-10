@@ -23,10 +23,12 @@ module Watch
 
     # GET /watching
     def index
-      watches = watcher.watches
+      if stale?(etag: watcher, last_modified: (watcher.updated_at || watcher.created_at).utc)
+        watches = watcher.watches
 
-      respond_to do |format|
-        format.json { render json: watches.pluck(:watchable_id, :watchable_type) }
+        respond_to do |format|
+          format.json { render json: watches.pluck(:watchable_id, :watchable_type) }
+        end
       end
     end
 
