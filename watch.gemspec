@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Watch::VERSION
   s.authors     = ["Cosimo Barbato"]
   s.email       = ["cbarb001@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Watch."
-  s.description = "TODO: Description of Watch."
+  s.homepage    = "https://github.com/grantiq/watch"
+  s.summary     = "An engine for providing watch/unwatch functionality."
+  s.description = "An engine using React to provide a simple component for watch/unwatch that can be easily extended."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
@@ -19,17 +19,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails"
   s.add_dependency "react-rails"
-  s.add_dependency "json-bloomfilter"
 
   s.add_development_dependency "pg"
-
-  s.add_development_dependency "thor"  
-  s.add_development_dependency "guard"
-  s.add_development_dependency "guard-minitest"
-  s.add_development_dependency "wrong"
-  s.add_development_dependency "fabrication"
-  s.add_development_dependency "faker"
-  s.add_development_dependency "minitest-rails"
-  s.add_development_dependency "minitest-reporters"
-  
 end
