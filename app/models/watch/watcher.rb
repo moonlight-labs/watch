@@ -6,16 +6,16 @@ module Watch
       has_many :watches, as: :watcher, dependent: :destroy, class_name: "Watch::Watch"
     end
 
-    def watch!(object)
-      ::Watch::Watch.watch!(self, object)
+    def watch!(watchable)
+      ::Watch::Watch.watch!(self, watchable)
     end
 
-    def unwatch!(object)
-      ::Watch::Watch.unwatch!(self, object)
+    def unwatch!(watchable)
+      ::Watch::Watch.unwatch!(self, watchable)
     end
 
-    def watching?(object)
-      self.watches.where(watchable: object).exists?
+    def watching?(watchable)
+      self.watches.where(watchable: watchable).exists?
     end
 
   end

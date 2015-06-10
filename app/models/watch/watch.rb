@@ -14,7 +14,8 @@ module Watch
       raise 'A valid watcher is required' if watcher.nil?
       raise 'A valid watchable is required' if watchable.nil?
 
-      self.find_by!(watcher: watcher, watchable: watchable).destroy
+      watch = self.find_by(watcher: watcher, watchable: watchable)
+      watch.destroy! if watch
     end
 
     def self.bloom(watcher)
