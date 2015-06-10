@@ -4,6 +4,7 @@ class CreateWatchWatches < ActiveRecord::Migration
       t.references :watcher,   polymorphic: true, index: true
       t.references :watchable, polymorphic: true, index: true 
 
+      t.timestamp :last_viewed_at
       t.timestamps null: false
     end
 

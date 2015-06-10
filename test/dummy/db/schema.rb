@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150330202106) do
     t.string   "watcher_type"
     t.integer  "watchable_id"
     t.string   "watchable_type"
+    t.datetime "last_viewed_at"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
