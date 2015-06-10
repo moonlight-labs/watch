@@ -1,3 +1,3 @@
 Watch.configure do |configuration|
-  configuration.watcher = -> (context) { User.take }
+  configuration.watcher = lambda { |context| User.take }
 end
