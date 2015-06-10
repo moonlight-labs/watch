@@ -5,7 +5,7 @@ module Watch
 
     # POST /watch
     def create
-      watcher.watch(watchable)
+      watcher.watch!(watchable)
 
       respond_to do |format|
         format.json { head :ok }
@@ -14,7 +14,7 @@ module Watch
 
     # DELETE /watch
     def destroy
-      watcher.unwatch(watchable)
+      watcher.unwatch!(watchable)
 
       respond_to do |format|
         format.json { head :ok }
@@ -26,7 +26,7 @@ module Watch
       watches = watcher.watches
 
       respond_to do |format|
-        format.json { render json: watches }
+        format.json { render json: watches.pluck(:watchable_id, :watchable_type) }
       end
     end
 

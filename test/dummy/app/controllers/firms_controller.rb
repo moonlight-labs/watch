@@ -2,7 +2,7 @@ class FirmsController < ApplicationController
 
   # GET /firms
   def index
-    firms = Firm.order('random()')
+    firms = Firm.all
 
     respond_to do |format|
       format.html { render locals: { firms: firms } }
