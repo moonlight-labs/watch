@@ -3,6 +3,8 @@ module Watch
     belongs_to :watcher, polymorphic: true, touch: true
     belongs_to :watchable, polymorphic: true
 
+    scope :by, -> (watcher) { where(watcher_id: watcher.id, watcher_type: watcher.class) }
+
     def self.watch!(watcher, watchable)
       raise 'A valid watcher is required' if watcher.nil?
       raise 'A valid watchable is required' if watchable.nil?
