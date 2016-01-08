@@ -27,7 +27,7 @@ module Watch
         watches = watcher.watches
 
         respond_to do |format|
-          format.json { render json: watches.pluck(:watchable_id, :watchable_type), root: !watches, status: :success }
+          format.json { render json: watches.pluck(:watchable_id, :watchable_type), root: !watches, status: :ok }
         end
       end
     end
