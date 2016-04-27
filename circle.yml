@@ -2,7 +2,7 @@ machine:
   ruby:
     version: rbx-2.3.0
 
-pre:
+  pre:
     - wget https://s3.amazonaws.com/circle-downloads/circleci-ruby2.3.0_0.0.1_amd64.deb
     - sudo dpkg -i circleci-ruby2.3.0_0.0.1_amd64.deb
 
