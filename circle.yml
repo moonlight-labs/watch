@@ -7,5 +7,9 @@ machine:
     - sudo dpkg -i circleci-ruby2.3.0_0.0.1_amd64.deb
 
 dependencies:
-  pre:
+  override:
     - gem install bundler
+
+test:
+  override:
+    - bundler -v
